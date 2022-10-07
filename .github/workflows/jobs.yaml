@@ -26,4 +26,4 @@ jobs:
 
       - name: Execute Python SDK
         run: |
-          "${GITHUB_WORKSPACE}/python-scripts/test-image.py"
+          python3 "${GITHUB_WORKSPACE}/python-scripts/test-image.py"
