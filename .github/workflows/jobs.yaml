@@ -33,4 +33,6 @@ jobs:
           mkdir ~/data2
           mkdir ~/data3
           mkdir ~/data4
-          CI=on MINIO_ROOT_USER=minio MINIO_ROOT_PASSWORD=minio123 minio server ~/data{1...4} --address :9000 --console-address :9001
+          CI=on MINIO_ROOT_USER=minio MINIO_ROOT_PASSWORD=minio123 minio server ~/data{1...4} --address :9000 --console-address :9001 &
+          sleep 10
+          mc alias set myminio http://127.0.0.1:9000 minio minio123
