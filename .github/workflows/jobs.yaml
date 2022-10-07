@@ -19,36 +19,8 @@ jobs:
 
       - name: Execute MinIO
         run: |
-          echo " "
-          echo "========================================"
-          echo "Install mc"
-          wget https://dl.min.io/client/mc/release/linux-amd64/mc
-          chmod +x mc
-          mv mc /usr/local/bin/mc
+          "${GITHUB_WORKSPACE}/bash-scripts/deploy-minio.sh"
 
-          echo " "
-          echo "========================================"
-          echo "Install MinIO"
-          wget https://dl.min.io/server/minio/release/linux-amd64/minio
-          chmod +x minio
-          mv minio /usr/local/bin/minio
-          minio
-
-          echo " "
-          echo "========================================"
-          echo "Execute MinIO in a process:"
-          mkdir ~/data1
-          mkdir ~/data2
-          mkdir ~/data3
-          mkdir ~/data4
-          CI=on MINIO_ROOT_USER=minio MINIO_ROOT_PASSWORD=minio123 minio server ~/data{1...4} --address :9000 --console-address :9001 &
-          sleep 10
-          mc alias set myminio http://127.0.0.1:9000 minio minio123
-
-          echo " "
-          echo "========================================"
-          echo "Place image in a bucket:"
-          mc mb myminio/my-bucket
-          touch image.png
-          echo "a" > image.png
-          mc cp image.png myminio/my-bucket
+      - name: Execute Python SDK
+        run: |
+          "${GITHUB_WORKSPACE}/python-scripts/test-image.py"
