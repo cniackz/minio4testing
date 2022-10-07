@@ -1,0 +1,22 @@
+name: Workflow
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+
+  minio-4-testing:
+
+    name: MinIO 4 Testing
+    runs-on: [ ubuntu-latest ]
+
+    steps:
+
+      - name: Build on ${{ matrix.os }}
+        run: |
+          echo "The idea is to build minio image from downloaded repository";
