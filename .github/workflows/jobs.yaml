@@ -17,6 +17,9 @@ jobs:
 
     steps:
 
+      - name: Download the repository
+        uses: actions/checkout@v2
+
       - name: Execute MinIO
         run: |
           "${GITHUB_WORKSPACE}/bash-scripts/deploy-minio.sh"
