@@ -43,9 +43,9 @@ echo " "
 echo "========================================"
 echo "Place image in a bucket:"
 mc mb myminio/my-bucket
-touch some-image.png
-echo "a" > some-image.png
-mc cp some-image.png myminio/my-bucket
+touch some-image.jpeg
+echo "a" > some-image.jpeg
+mc cp some-image.jpeg myminio/my-bucket
 
 echo "Install Python dependencies"
 echo "========================================"
