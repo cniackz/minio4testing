@@ -21,11 +21,20 @@ jobs:
         run: |
           echo " "
           echo "========================================"
-          echo "Download MinIO"
+          echo "Install mc"
+          wget https://dl.min.io/client/mc/release/linux-amd64/mc
+          chmod +x mc
+          mv mc /usr/local/bin/mc
+          mc
+
+          echo " "
+          echo "========================================"
+          echo "Install MinIO"
           wget https://dl.min.io/server/minio/release/linux-amd64/minio
           chmod +x minio
           mv minio /usr/local/bin/minio
           minio
+
           echo " "
           echo "========================================"
           echo "Execute MinIO in a process:"
