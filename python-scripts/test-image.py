@@ -1,3 +1,4 @@
+from PIL import Image
 from minio import Minio
 from minio.error import S3Error
 
@@ -13,7 +14,17 @@ def main():
     )
 
     # Download image
-    print(client.fget_object("my-bucket", "image.png", "~/image.png"))
+    print(client.fget_object("my-bucket", "some-image.jpeg", "~/some-image.jpeg"))
+
+    # Open image
+    image = Image.open('~/some-image.jpeg')
+
+    # Resize
+    new_image = image.resize((500, 500))
+    new_image.save('~/image_500.png')
+
+    # Next: Upload image to MinIO
+    # Next: Verify image was properly uploaded to MinIO
 
 if __name__ == "__main__":
     try:
