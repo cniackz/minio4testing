@@ -29,8 +29,8 @@ jobs:
           echo " "
           echo "========================================"
           echo "Execute MinIO in a process:"
-          mkdir /data1
-          mkdir /data2
-          mkdir /data3
-          mkdir /data4
-          CI=on MINIO_ROOT_USER=minio MINIO_ROOT_PASSWORD=minio123 minio server /data{1...4} --address :9000 --console-address :9001
+          mkdir ~/data1
+          mkdir ~/data2
+          mkdir ~/data3
+          mkdir ~/data4
+          CI=on MINIO_ROOT_USER=minio MINIO_ROOT_PASSWORD=minio123 minio server ~/data{1...4} --address :9000 --console-address :9001
