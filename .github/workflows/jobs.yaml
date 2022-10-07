@@ -19,4 +19,9 @@ jobs:
 
       - name: Build on ${{ matrix.os }}
         run: |
+          # Download MinIO
+          wget https://dl.min.io/server/minio/release/linux-amd64/minio
+          chmod +x minio
+          mv minio /usr/local/bin/minio
+          minio
           echo "The idea is to build minio image from downloaded repository";
