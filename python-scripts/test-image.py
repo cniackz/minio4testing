@@ -1,7 +1,7 @@
 import os
-from PIL import Image
 from minio import Minio
 from minio.error import S3Error
+from PIL import Image, ImageChops
 
 def main():
     # Create a client with the MinIO server playground, its access key
