@@ -32,8 +32,8 @@ def main():
     # Upload image to MinIO
     result = client.fput_object(
         "my-bucket",
-        path_file_resized,
-        "logo-resized.jpeg"
+        "logo-resized.jpeg",
+        path_file_resized
     )
     print(
         "created {0} object; etag: {1}, version-id: {2}".format(
