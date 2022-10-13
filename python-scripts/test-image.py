@@ -30,7 +30,16 @@ def main():
     new_image.save(path_file_resized)
 
     # Upload image to MinIO
-    client.fput_object("my-bucket", path_file_resized, "logo-resized.jpeg")
+    result = client.fput_object(
+        "my-bucket",
+        path_file_resized,
+        "logo-resized.jpeg"
+    )
+    print(
+        "created {0} object; etag: {1}, version-id: {2}".format(
+        result.object_name, result.etag, result.version_id,
+        ),
+    )
 
     # Verify image was properly uploaded to MinIO
     client.fget_object("my-bucket", "logo-resized.jpeg", logo_verify)
