@@ -1,7 +1,7 @@
+import os
 from PIL import Image
 from minio import Minio
 from minio.error import S3Error
-
 
 def main():
     # Create a client with the MinIO server playground, its access key
@@ -13,15 +13,20 @@ def main():
         secure=False
     )
 
+    # Get GitHub Env Var
+    print(os.environ['GITHUB_WORKSPACE'])
+    path_file = os.environ['GITHUB_WORKSPACE'] + "/some-image.jpeg"
+    path_file_resized = os.environ['GITHUB_WORKSPACE'] + "/image-resized.jpeg"
+
     # Download image
-    print(client.fget_object("my-bucket", "some-image.jpeg", "~/some-image.jpeg"))
+    print(client.fget_object("my-bucket", "some-image.jpeg", path_file))
 
     # Open image
-    image = Image.open('~/some-image.jpeg')
+    image = Image.open(path_file)
 
     # Resize
     new_image = image.resize((500, 500))
-    new_image.save('~/image_500.png')
+    new_image.save(path_file_resized)
 
     # Next: Upload image to MinIO
     # Next: Verify image was properly uploaded to MinIO
