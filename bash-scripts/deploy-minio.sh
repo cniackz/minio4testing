@@ -43,9 +43,8 @@ echo " "
 echo "========================================"
 echo "Place image in a bucket:"
 mc mb myminio/my-bucket
-touch some-image.jpeg
-echo "a" > some-image.jpeg
-mc cp some-image.jpeg myminio/my-bucket
+wget https://github.com/cniackz/minio4testing/blob/main/ubuntu-logo.jpeg
+mc cp ubuntu-logo.jpeg myminio/my-bucket
 mc ls myminio/my-bucket
 
 echo "Install Python dependencies"

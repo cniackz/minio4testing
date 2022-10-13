@@ -15,11 +15,11 @@ def main():
 
     # Get GitHub Env Var
     print(os.environ['GITHUB_WORKSPACE'])
-    path_file = os.environ['GITHUB_WORKSPACE'] + "/some-image.jpeg"
-    path_file_resized = os.environ['GITHUB_WORKSPACE'] + "/image-resized.jpeg"
+    path_file = os.environ['GITHUB_WORKSPACE'] + "/ubuntu-logo.jpeg"
+    path_file_resized = os.environ['GITHUB_WORKSPACE'] + "/logo-resized.jpeg"
 
     # Download image
-    print(client.fget_object("my-bucket", "some-image.jpeg", path_file))
+    print(client.fget_object("my-bucket", "ubuntu-logo.jpeg", path_file))
 
     # Open image
     image = Image.open(path_file)
