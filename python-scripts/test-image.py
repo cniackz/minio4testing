@@ -1,4 +1,4 @@
-import os
+import os, sys
 from minio import Minio
 from minio.error import S3Error
 from PIL import Image, ImageChops
@@ -25,7 +25,7 @@ def main():
     # Open image
     image = Image.open(path_file)
 
-    # Resize
+    # Resize it
     new_image = image.resize((500, 500))
     new_image.save(path_file_resized)
 
@@ -41,17 +41,17 @@ def main():
         ),
     )
 
-    # Verify image was properly uploaded to MinIO
+    # Verify resized image was properly uploaded to MinIO
     client.fget_object("my-bucket", "logo-resized.jpeg", logo_verify)
     image_one = Image.open(path_file_resized)
     image_two = Image.open(logo_verify)
-
     diff = ImageChops.difference(image_one, image_two)
-
     if diff.getbbox():
-        print("images are different")
+        print("FAIL: image are different")
+        sys.exit(1)
     else:
-        print("images are the same")
+        print("PASS: images are the same")
+        sys.exit()
 
 if __name__ == "__main__":
     try:
