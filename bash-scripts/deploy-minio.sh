@@ -46,6 +46,7 @@ mc mb myminio/my-bucket
 touch some-image.jpeg
 echo "a" > some-image.jpeg
 mc cp some-image.jpeg myminio/my-bucket
+mc ls myminio/my-bucket
 
 echo "Install Python dependencies"
 echo "========================================"
